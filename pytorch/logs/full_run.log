@@ -1,0 +1,39 @@
+W1103 11:33:11.083000 82273 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 7515.93it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/0 seed=0 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.7600 val_f1=0.7596
+  preliminary t=1: val_acc=0.8200 val_f1=0.8193
+  preliminary t=2: val_acc=0.9000 val_f1=0.9000
+  preliminary t=3: val_acc=0.8400 val_f1=0.8400
+  preliminary t=4: val_acc=0.8000 val_f1=0.8000
+  c_u_cali=[0.4551 0.5449]
+[main stage]
+  epoch  1: s_conf=3.5723 s_class=0.9956 tst_acc=0.7018 tst_loss=0.6603
+  epoch  2: s_conf=2.9460 s_class=0.9659 tst_acc=0.5700 tst_loss=0.6536
+  epoch  3: s_conf=2.6725 s_class=0.9994 tst_acc=0.8023 tst_loss=0.5396
+  epoch  4: s_conf=1.1870 s_class=0.9987 tst_acc=0.8424 tst_loss=0.3846
+  epoch  5: s_conf=0.3084 s_class=0.9990 tst_acc=0.8523 tst_loss=0.3412
+  epoch  6: s_conf=0.7579 s_class=0.9969 tst_acc=0.8391 tst_loss=0.4777
+  epoch  7: s_conf=0.9718 s_class=0.9963 tst_acc=0.8479 tst_loss=0.5178
+  epoch  8: s_conf=1.0754 s_class=0.9299 tst_acc=0.8062 tst_loss=0.8504
+  epoch  9: s_conf=1.1200 s_class=0.9496 tst_acc=0.7540 tst_loss=1.1011
+  epoch 10: s_conf=1.0290 s_class=0.9156 tst_acc=0.7996 tst_loss=0.8912
+================================================================
+RESULT path=bal/0 seed=0 stop_epoch=5 tst_acc=0.8523 tst_f1=0.8522 tst_loss=0.3412
+================================================================
+EXIT_CODE=0
