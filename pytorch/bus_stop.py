@@ -243,7 +243,7 @@ def preliminary_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, device,
 
 def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst,
                p_l_conf, c_u_cali, device, max_len, epochs, batch_size, lr, n_que,
-               seed=0, smooth_alpha=1.0, verbose=True):
+               seed=0, smooth_alpha=1.0, swa=False, verbose=True):
     """
     Stage 2: train on all labeled data and stop with the BUS-stop rule.
 
@@ -279,6 +279,9 @@ def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst
     s_conf_ema = None
     s_class_ema = None
 
+    # Improvement: collect window checkpoints to average their weights (SWA).
+    swa_states = []
+
     for epoch in range(1, epochs + 1):
         train_one_epoch(model, enc_lab, y_lab, optimizer, loss_fn,
                         batch_size, seed, epoch, device)
@@ -313,6 +316,8 @@ def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst
             if s_class > max(queue):
                 best_state = {k: v.detach().clone() for k, v in model.state_dict().items()}
                 stop_epoch = epoch
+            if swa:
+                swa_states.append({k: v.detach().clone() for k, v in model.state_dict().items()})
             queue.append(s_class)
         else:
             # s_conf did not improve for n_que epochs, so we stop.
@@ -322,9 +327,23 @@ def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst
     if best_state is None:
         best_state = {k: v.detach().clone() for k, v in model.state_dict().items()}
         stop_epoch = stop_epoch or epochs
-    model.load_state_dict(best_state)
+
+    if swa and len(swa_states) >= 2:
+        # Average the weights of the window checkpoints (stochastic weight averaging).
+        avg_state = {}
+        for k, v in swa_states[0].items():
+            if v.dtype.is_floating_point:
+                avg_state[k] = torch.stack([s[k] for s in swa_states]).mean(0)
+            else:
+                avg_state[k] = v.clone()
+        model.load_state_dict(avg_state)
+        used = "swa"
+    else:
+        model.load_state_dict(best_state)
+        used = "best"
 
     final = eval_metrics(model, enc_tst, y_tst)
     final["stop_epoch"] = stop_epoch
     final["best_conf"] = best_conf
+    final["used"] = used
     return model, final
