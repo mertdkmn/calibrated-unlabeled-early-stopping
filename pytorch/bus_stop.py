@@ -30,6 +30,7 @@ from criteria import (
     class_calibration,
     cosine_sim,
     downsample_indices,
+    ema,
     euclidean,
     evenly_shuffle_indices,
     macro_f1,
@@ -242,7 +243,7 @@ def preliminary_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, device,
 
 def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst,
                p_l_conf, c_u_cali, device, max_len, epochs, batch_size, lr, n_que,
-               seed=0, verbose=True):
+               seed=0, smooth_alpha=1.0, verbose=True):
     """
     Stage 2: train on all labeled data and stop with the BUS-stop rule.
 
@@ -274,6 +275,10 @@ def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst
     stop_epoch = None
     ids = downsample_indices(unl_len, lab_len)
 
+    # EMA state for improvement #1 (None on the first epoch).
+    s_conf_ema = None
+    s_class_ema = None
+
     for epoch in range(1, epochs + 1):
         train_one_epoch(model, enc_lab, y_lab, optimizer, loss_fn,
                         batch_size, seed, epoch, device)
@@ -282,8 +287,13 @@ def main_stage(factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst
         unl_confs = np.sort(unl_probs.max(1))   # sort, as in Algorithm 2
         unl_dist = unl_probs.mean(0)
 
-        s_conf = euclidean(unl_confs[ids], p_l_conf)
-        s_class = cosine_sim(unl_dist, c_u_cali)
+        s_conf_raw = euclidean(unl_confs[ids], p_l_conf)
+        s_class_raw = cosine_sim(unl_dist, c_u_cali)
+
+        # Improvement #1: smooth the noisy signals (alpha=1.0 means no smoothing).
+        s_conf = ema(s_conf_ema, s_conf_raw, smooth_alpha)
+        s_class = ema(s_class_ema, s_class_raw, smooth_alpha)
+        s_conf_ema, s_class_ema = s_conf, s_class
 
         if verbose:
             tst = eval_metrics(model, enc_tst, y_tst)
