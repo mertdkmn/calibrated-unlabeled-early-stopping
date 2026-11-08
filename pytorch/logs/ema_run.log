@@ -1,0 +1,86 @@
+===== EMA SEED 0 (alpha=0.5) =====
+W1107 21:17:43.842000 3120 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 14418.40it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/0 seed=0 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.7600 val_f1=0.7596
+  preliminary t=1: val_acc=0.8200 val_f1=0.8193
+  preliminary t=2: val_acc=0.9000 val_f1=0.9000
+  preliminary t=3: val_acc=0.8400 val_f1=0.8400
+  preliminary t=4: val_acc=0.8000 val_f1=0.8000
+  c_u_cali=[0.4552 0.5448]
+[main stage]
+  epoch  1: s_conf=3.5736 s_class=0.9956 tst_acc=0.7018 tst_loss=0.6603
+  epoch  2: s_conf=3.2604 s_class=0.9808 tst_acc=0.5700 tst_loss=0.6536
+  epoch  3: s_conf=2.9671 s_class=0.9901 tst_acc=0.8023 tst_loss=0.5396
+  epoch  4: s_conf=2.0780 s_class=0.9944 tst_acc=0.8424 tst_loss=0.3846
+  epoch  5: s_conf=1.1928 s_class=0.9967 tst_acc=0.8523 tst_loss=0.3412
+  epoch  6: s_conf=0.9749 s_class=0.9967 tst_acc=0.8391 tst_loss=0.4790
+  epoch  7: s_conf=0.9733 s_class=0.9965 tst_acc=0.8484 tst_loss=0.5181
+  epoch  8: s_conf=1.0239 s_class=0.9631 tst_acc=0.8067 tst_loss=0.8524
+  epoch  9: s_conf=1.0716 s_class=0.9563 tst_acc=0.7534 tst_loss=1.1032
+  epoch 10: s_conf=1.0517 s_class=0.9344 tst_acc=0.7957 tst_loss=0.9074
+  epoch 11: s_conf=0.9900 s_class=0.9662 tst_acc=0.8583 tst_loss=0.4741
+  epoch 12: s_conf=0.9414 s_class=0.9811 tst_acc=0.8380 tst_loss=0.5588
+  epoch 13: s_conf=0.9457 s_class=0.9905 tst_acc=0.8512 tst_loss=0.5001
+  epoch 14: s_conf=0.9882 s_class=0.9849 tst_acc=0.8528 tst_loss=0.5228
+  epoch 15: s_conf=1.0343 s_class=0.9813 tst_acc=0.8539 tst_loss=0.5502
+  epoch 16: s_conf=1.0728 s_class=0.9860 tst_acc=0.8589 tst_loss=0.5381
+  epoch 17: s_conf=1.1113 s_class=0.9908 tst_acc=0.8600 tst_loss=0.5554
+================================================================
+RESULT path=bal/0 seed=0 alpha=0.5 stop_epoch=13 tst_acc=0.8512 tst_f1=0.8510 tst_loss=0.5001
+================================================================
+===== EMA SEED 1 (alpha=0.5) =====
+W1107 21:27:21.674000 3246 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 12862.00it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/1 seed=1 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.6600 val_f1=0.6532
+  preliminary t=1: val_acc=0.7800 val_f1=0.7778
+  preliminary t=2: val_acc=0.7800 val_f1=0.7799
+  preliminary t=3: val_acc=0.6400 val_f1=0.6394
+  preliminary t=4: val_acc=0.6800 val_f1=0.6753
+  c_u_cali=[0.4146 0.5854]
+[main stage]
+  epoch  1: s_conf=2.5252 s_class=0.9844 tst_acc=0.6436 tst_loss=0.6774
+  epoch  2: s_conf=2.2047 s_class=0.9921 tst_acc=0.5678 tst_loss=0.6573
+  epoch  3: s_conf=2.0583 s_class=0.9881 tst_acc=0.7490 tst_loss=0.6065
+  epoch  4: s_conf=1.4266 s_class=0.9935 tst_acc=0.7716 tst_loss=0.5111
+  epoch  5: s_conf=1.0244 s_class=0.9889 tst_acc=0.8407 tst_loss=0.3862
+  epoch  6: s_conf=1.2978 s_class=0.9845 tst_acc=0.8534 tst_loss=0.3706
+  epoch  7: s_conf=1.5753 s_class=0.9718 tst_acc=0.7227 tst_loss=0.9461
+  epoch  8: s_conf=1.7081 s_class=0.9233 tst_acc=0.7798 tst_loss=0.6431
+  epoch  9: s_conf=1.6524 s_class=0.9401 tst_acc=0.7227 tst_loss=0.8305
+  epoch 10: s_conf=1.6788 s_class=0.9679 tst_acc=0.8347 tst_loss=0.4180
+================================================================
+RESULT path=bal/1 seed=1 alpha=0.5 stop_epoch=5 tst_acc=0.8407 tst_f1=0.8407 tst_loss=0.3862
+================================================================
+EXIT_CODE=0
