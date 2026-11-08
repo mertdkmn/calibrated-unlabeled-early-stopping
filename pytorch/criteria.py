@@ -99,3 +99,19 @@ def evenly_shuffle_indices(y):
     # Sort by height to get the even mix.
     order = np.argsort(marks, kind="stable")
     return [all_idx[i] for i in order]
+
+
+def ema(prev, value, alpha):
+    """
+    Smooth a value over time with an exponential moving average (EMA).
+
+    prev  : previous smoothed value (None on the first call)
+    value : the new raw value
+    alpha : how much to trust the new value
+            (1.0 = no smoothing, 0.0 = ignore the new value)
+
+    Used to reduce noise in the stopping signals (improvement #1).
+    """
+    if prev is None:
+        return float(value)
+    return alpha * float(value) + (1.0 - alpha) * float(prev)

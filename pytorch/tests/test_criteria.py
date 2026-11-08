@@ -16,6 +16,7 @@ from criteria import (
     class_calibration,
     cosine_sim,
     downsample_indices,
+    ema,
     evenly_shuffle_indices,
     euclidean,
 )
@@ -55,9 +56,22 @@ def test_similarities():
     print("OK cosine_sim / euclidean")
 
 
+def test_ema():
+    # First call just returns the value.
+    assert ema(None, 10.0, 0.5) == 10.0
+    # alpha=0.5 -> halfway between old and new.
+    assert abs(ema(10.0, 20.0, 0.5) - 15.0) < 1e-9
+    # alpha=1.0 -> no smoothing (raw value).
+    assert abs(ema(10.0, 20.0, 1.0) - 20.0) < 1e-9
+    # alpha=0.0 -> keep the old value.
+    assert abs(ema(10.0, 20.0, 0.0) - 10.0) < 1e-9
+    print("OK ema")
+
+
 if __name__ == "__main__":
     test_class_calibration()
     test_downsample_indices()
     test_evenly_shuffle()
     test_similarities()
+    test_ema()
     print("ALL TESTS PASSED")
