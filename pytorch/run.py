@@ -56,6 +56,8 @@ def main():
     p.add_argument("--n_que", type=int, default=5)
     p.add_argument("--smooth_alpha", type=float, default=1.0,
                    help="EMA smoothing of stopping signals (1.0 = off)")
+    p.add_argument("--swa", action="store_true",
+                   help="Average weights of the window checkpoints (SWA)")
     p.add_argument("--cali_acc_or_f1", default="f1", choices=["acc", "f1"])
     p.add_argument("--bias_lab_or_val", default="val", choices=["lab", "val"])
 
@@ -99,11 +101,11 @@ def main():
     model, final = main_stage(
         factory, tokenizer, texts_lab, y_lab, texts_unl, texts_tst, y_tst,
         p_l_conf, c_u_cali, device, args.max_len, args.epochs, args.batch_size,
-        args.lr, args.n_que, args.seed, args.smooth_alpha, verbose=True)
+        args.lr, args.n_que, args.seed, args.smooth_alpha, args.swa, verbose=True)
 
     print("=" * 64)
     print(f"RESULT path={args.data_path} seed={args.seed} alpha={args.smooth_alpha} "
-          f"stop_epoch={final['stop_epoch']} "
+          f"used={final.get('used', 'best')} stop_epoch={final['stop_epoch']} "
           f"tst_acc={final['acc']:.4f} tst_f1={final['f1']:.4f} tst_loss={final['loss']:.4f}")
     print("=" * 64)
 
