@@ -1,0 +1,94 @@
+===== SEED 0 =====
+W1107 20:09:13.874000 59913 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5320.24it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/0 seed=0 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.7600 val_f1=0.7596
+  preliminary t=1: val_acc=0.8200 val_f1=0.8193
+  preliminary t=2: val_acc=0.9000 val_f1=0.9000
+  preliminary t=3: val_acc=0.8400 val_f1=0.8400
+  preliminary t=4: val_acc=0.8000 val_f1=0.8000
+  c_u_cali=[0.4552 0.5448]
+[main stage]
+  epoch  1: s_conf=3.5739 s_class=0.9956 tst_acc=0.7018 tst_loss=0.6603
+  epoch  2: s_conf=2.9475 s_class=0.9659 tst_acc=0.5700 tst_loss=0.6536
+  epoch  3: s_conf=2.6741 s_class=0.9994 tst_acc=0.8023 tst_loss=0.5397
+  epoch  4: s_conf=1.1904 s_class=0.9987 tst_acc=0.8418 tst_loss=0.3847
+  epoch  5: s_conf=0.3079 s_class=0.9990 tst_acc=0.8523 tst_loss=0.3412
+  epoch  6: s_conf=0.7545 s_class=0.9968 tst_acc=0.8380 tst_loss=0.4788
+  epoch  7: s_conf=0.9704 s_class=0.9961 tst_acc=0.8484 tst_loss=0.5176
+  epoch  8: s_conf=1.0707 s_class=0.9296 tst_acc=0.8062 tst_loss=0.8511
+  epoch  9: s_conf=1.1173 s_class=0.9498 tst_acc=0.7545 tst_loss=1.0974
+  epoch 10: s_conf=1.0448 s_class=0.9121 tst_acc=0.7968 tst_loss=0.9185
+================================================================
+RESULT path=bal/0 seed=0 stop_epoch=5 tst_acc=0.8523 tst_f1=0.8522 tst_loss=0.3412
+================================================================
+===== SEED 1 =====
+W1107 20:18:22.441000 60032 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 10465.51it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/1 seed=1 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.6600 val_f1=0.6532
+  preliminary t=1: val_acc=0.7800 val_f1=0.7778
+  preliminary t=2: val_acc=0.7800 val_f1=0.7799
+  preliminary t=3: val_acc=0.6400 val_f1=0.6394
+  preliminary t=4: val_acc=0.6800 val_f1=0.6753
+  c_u_cali=[0.4146 0.5854]
+[main stage]
+  epoch  1: s_conf=2.5254 s_class=0.9844 tst_acc=0.6436 tst_loss=0.6774
+  epoch  2: s_conf=1.8843 s_class=0.9998 tst_acc=0.5678 tst_loss=0.6573
+  epoch  3: s_conf=1.9121 s_class=0.9842 tst_acc=0.7490 tst_loss=0.6065
+  epoch  4: s_conf=0.7955 s_class=0.9990 tst_acc=0.7716 tst_loss=0.5112
+  epoch  5: s_conf=0.6215 s_class=0.9843 tst_acc=0.8407 tst_loss=0.3862
+  epoch  6: s_conf=1.5704 s_class=0.9801 tst_acc=0.8534 tst_loss=0.3705
+  epoch  7: s_conf=1.8520 s_class=0.9593 tst_acc=0.7232 tst_loss=0.9444
+  epoch  8: s_conf=1.8420 s_class=0.8751 tst_acc=0.7803 tst_loss=0.6429
+  epoch  9: s_conf=1.6015 s_class=0.9565 tst_acc=0.7216 tst_loss=0.8345
+  epoch 10: s_conf=1.7107 s_class=0.9954 tst_acc=0.8353 tst_loss=0.4175
+================================================================
+RESULT path=bal/1 seed=1 stop_epoch=5 tst_acc=0.8407 tst_f1=0.8407 tst_loss=0.3862
+================================================================
+===== SEED 2 =====
+W1107 20:27:29.239000 60073 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 8292.27it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
