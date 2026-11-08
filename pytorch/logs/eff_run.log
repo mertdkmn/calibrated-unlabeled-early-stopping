@@ -1,0 +1,71 @@
+===== EFF T1N1 SEED 0 =====
+W1108 10:56:59.808000 8138 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6871.55it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/0 seed=0 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.7600 val_f1=0.7596
+  c_u_cali=[0.3795 0.6205]
+[main stage]
+  epoch  1: s_conf=4.2468 s_class=0.9485 tst_acc=0.6678 tst_loss=0.6500
+  epoch  2: s_conf=4.2193 s_class=0.9440 tst_acc=0.7677 tst_loss=0.5773
+  epoch  3: s_conf=4.3601 s_class=0.9888 tst_acc=0.8380 tst_loss=0.4406
+  epoch  4: s_conf=5.0624 s_class=0.9976 tst_acc=0.8418 tst_loss=0.3832
+  epoch  5: s_conf=5.6946 s_class=0.9485 tst_acc=0.8523 tst_loss=0.3440
+  epoch  6: s_conf=5.9452 s_class=0.9834 tst_acc=0.8550 tst_loss=0.3583
+  epoch  7: s_conf=6.1487 s_class=0.9997 tst_acc=0.8226 tst_loss=0.5215
+================================================================
+RESULT path=bal/0 seed=0 alpha=1.0 used=best stop_epoch=4 tst_acc=0.8418 tst_f1=0.8407 tst_loss=0.3832
+================================================================
+real 109.01
+user 8.18
+sys 2.95
+===== EFF T1N1 SEED 1 =====
+W1108 10:58:47.419000 8155 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 12965.89it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+=== BUS-stop | task=SST-2 path=bal/1 seed=1 device=mps ===
+labeled=100 unlabeled=1821 test=1821 num_labels=2
+[preliminary stage]
+  preliminary t=0: val_acc=0.6200 val_f1=0.6073
+  c_u_cali=[0.3326 0.6674]
+[main stage]
+  epoch  1: s_conf=3.8750 s_class=0.9819 tst_acc=0.5316 tst_loss=0.6764
+  epoch  2: s_conf=3.8032 s_class=0.9748 tst_acc=0.6332 tst_loss=0.6447
+  epoch  3: s_conf=3.8474 s_class=0.9129 tst_acc=0.7040 tst_loss=0.6145
+  epoch  4: s_conf=4.2537 s_class=0.9984 tst_acc=0.6716 tst_loss=0.5809
+  epoch  5: s_conf=4.7928 s_class=0.9213 tst_acc=0.8051 tst_loss=0.4440
+  epoch  6: s_conf=5.6534 s_class=0.9720 tst_acc=0.8265 tst_loss=0.4048
+  epoch  7: s_conf=6.2420 s_class=0.9991 tst_acc=0.7853 tst_loss=0.5868
+================================================================
+RESULT path=bal/1 seed=1 alpha=1.0 used=best stop_epoch=4 tst_acc=0.6716 tst_f1=0.6481 tst_loss=0.5809
+================================================================
+real 103.61
+user 7.74
+sys 2.22
+EXIT_CODE=0
