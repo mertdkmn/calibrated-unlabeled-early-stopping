@@ -3,3 +3,4 @@ __pycache__/
 .venv/
 *.bin
 .ipynb_checkpoints/
+.DS_Store
